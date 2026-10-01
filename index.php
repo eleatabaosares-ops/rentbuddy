@@ -1,18 +1,21 @@
-<?php
-require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/includes/functions.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS</title>
+</head>
+<body>
+    <form method="post" action="function/sms.php">
+       <input type="hidden" name="username" value="04DB73"/>   <!--username base on the the cloud app username -->
+       <input type="hidden" name="password" value="liealjinfernandez"/>  <!--password base on the the cloud app password -->
+       <label>Message:</label>
+       <input type="text" name="message"> <!--your messages -->
+       <label>Phone number:</label>
+       <input type="text" name="number"> <!--phone number -->
+       <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
 
-$user = current_user();
 
-if ($user) {
-    if ($user['role'] === 'admin') {
-        header('Location: ' . BASE_URL . 'admin/dashboard.php');
-        exit;
-    } else {
-        header('Location: ' . BASE_URL . 'tenant/dashboard.php');
-        exit;
-    }
-} else {
-    header('Location: ' . BASE_URL . 'login.php');
-    exit;
-}
